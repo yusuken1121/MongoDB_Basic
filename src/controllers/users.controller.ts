@@ -28,6 +28,18 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+//Read a single user
+export const getUser = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findById(userId);
+    res.status(201).json(user);
+  } catch (error) {
+    console.error("Internal Server Error", error);
+    res.status(501).json("Cannot create a new user");
+  }
+};
+
 //Update
 export const updateUser = async (req: Request, res: Response) => {
   try {
