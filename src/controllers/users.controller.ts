@@ -42,3 +42,19 @@ export const updateUser = async (req: Request, res: Response) => {
     res.status(501).json("Cannot create a new user");
   }
 };
+
+//Delete
+export const deleteUser = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      res.status(404).json({ message: "success" });
+    } else {
+      res.json(user);
+    }
+  } catch (error) {
+    console.error("Internal Server Error", error);
+    res.status(501).json("Cannot create a new user");
+  }
+};
