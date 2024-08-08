@@ -1,4 +1,3 @@
-import { timeStamp } from "console";
 import { Schema, model, connect } from "mongoose";
 
 interface IUser {
@@ -8,7 +7,7 @@ interface IUser {
 
 const userSchema = new Schema<IUser>(
   {
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   },
   { timestamps: true }
